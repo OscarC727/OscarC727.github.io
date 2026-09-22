@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oscar Carrillo, Electrical Engineering</title>
+<meta name="description" content="Oscar Carrillo, electrical engineering student at USF and control lead for the IEEE EXO exoskeleton team.">
+<!--
+  ============ EDIT THESE BEFORE UPLOADING ============
+  1. YOUR_USERNAME        -> your GitHub username (appears in several links below)
+  2. YOUR-PROJECT         -> your Vercel domain for the Spotify widget (search this file for "vercel.app")
+  3. YOUR_SPOTIFY_ID      -> your Spotify user ID (for the link around the widget)
+  =====================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#ECE5D3;
+    --paper:#F3EEE1;
+    --ink:#2A2723;
+    --muted:#5A544A;
+    --green:#123F30;
+    --gold:#A8995A;
+    --measure:40rem;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--bone);-webkit-text-size-adjust:100%}
+  body{
+    margin:0;color:var(--ink);background:var(--bone);
+    font-family:"EB Garamond",Garamond,"Times New Roman",serif;
+    font-size:1.1875rem;line-height:1.6;
+    font-variant-numeric:oldstyle-nums proportional-nums;
+  }
+  a{color:var(--green);text-decoration-color:var(--gold);text-underline-offset:.18em;text-decoration-thickness:1px}
+  a:hover{text-decoration-color:var(--green)}
+  :focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:68rem;margin:0 auto;padding:clamp(1.5rem,5vw,4.5rem) clamp(1.25rem,5vw,3rem) 3rem}
+
+  /* ---------- hero ---------- */
+  .hero{display:grid;gap:2.5rem;align-items:center;padding-bottom:clamp(2.5rem,6vw,4.5rem);border-bottom:1px solid var(--gold)}
+  @media (min-width:860px){.hero{grid-template-columns:1.05fr 1fr;gap:4rem}}
+  .name{
+    margin:0;color:var(--green);font-weight:500;
+    font-size:clamp(2.4rem,6.2vw,4.4rem);line-height:1;letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .rule{width:3.5rem;height:1px;background:var(--gold);margin:1.6rem 0}
+  .lede{margin:0;max-width:30rem;font-size:1.3rem;line-height:1.5}
+  .lede em{color:var(--muted)}
+  .contact{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin:1.6rem 0 0;padding:0;list-style:none;font-variant-caps:all-small-caps;letter-spacing:.08em;font-size:1.2rem}
+
+  /* ---------- pendulum ---------- */
+  .lab{background:var(--paper);border:1px solid rgba(168,153,90,.55);padding:1.25rem 1.25rem 1rem}
+  .lab canvas{display:block;width:100%;height:auto;cursor:pointer}
+  .lab-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.25rem}
+  .lab-title{margin:0;font-size:1.05rem;font-weight:500;font-style:italic;color:var(--green)}
+  .readout{font-size:1rem;color:var(--muted);font-variant-numeric:lining-nums tabular-nums}
+  .status{margin:.35rem 0 .9rem;font-size:1rem;color:var(--muted);min-height:1.6em}
+  .gains{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+  .gains label{display:flex;flex-direction:column;font-size:.95rem;color:var(--muted)}
+  .gains output{font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
+  .gains .top{display:flex;justify-content:space-between}
+  input[type=range]{width:100%;accent-color:var(--green);margin:.35rem 0 0;min-height:28px}
+  .lab-actions{display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap}
+  button{
+    font:inherit;font-size:1rem;min-height:44px;padding:.45rem 1.1rem;cursor:pointer;
+    background:transparent;color:var(--green);border:1px solid var(--green);border-radius:2px;
+  }
+  button:hover{background:var(--green);color:var(--bone)}
+  button.quiet{border-color:transparent;color:var(--muted);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:.18em}
+  button.quiet:hover{background:transparent;color:var(--green)}
+  .caption{margin:.9rem 0 0;font-size:.95rem;line-height:1.45;color:var(--muted)}
+
+  /* ---------- sections ---------- */
+  section{display:grid;gap:.5rem 3rem;padding:clamp(2.25rem,5vw,3.5rem) 0;border-bottom:1px solid rgba(168,153,90,.45)}
+  @media (min-width:860px){section{grid-template-columns:13rem 1fr}}
+  section h2{margin:0;font-weight:400;font-style:italic;font-size:1.6rem;color:var(--green);line-height:1.2}
+  .body{max-width:var(--measure)}
+  .body p{margin:0 0 1rem}
+  .body p:last-child{margin-bottom:0}
+
+  .projects{list-style:none;margin:0;padding:0}
+  .projects li{padding:0 0 1.35rem;margin:0 0 1.35rem;border-bottom:1px solid rgba(168,153,90,.35)}
+  .projects li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+  .projects h3{margin:0;font-size:1.3rem;font-weight:500;line-height:1.3}
+  .projects h3 a{text-decoration:none;color:var(--green)}
+  .projects h3 a:hover{text-decoration:underline;text-decoration-color:var(--gold)}
+  .projects p{margin:.25rem 0 0}
+  .stack{display:block;margin-top:.2rem;font-style:italic;color:var(--muted);font-size:1.05rem}
+  .wip{font-size:1rem;font-style:italic;color:var(--muted);font-weight:400}
+
+  .interests{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.5rem}
+
+  .listening img{display:block;max-width:100%;height:auto}
+  .listening a{display:inline-block}
+  .listening .note{margin-top:.75rem;font-size:1rem;color:var(--muted)}
+
+  footer{padding-top:2.25rem;font-size:1rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <div>
+      <h1 class="name">Oscar<br>Carrillo</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="lede">Electrical engineering student at the University of South Florida. I lead controls for the IEEE EXO exoskeleton team, and I build hardware from scratch to understand it <em>all the way down.</em></p>
+      <ul class="contact">
+        <li><a href="mailto:oscarc1@usf.edu">oscarc1@usf.edu</a></li>
+        <li><a href="https://linkedin.com/in/oscarc727">LinkedIn</a></li>
+        <li><a href="https://github.com/YOUR_USERNAME">GitHub</a></li>
+      </ul>
+    </div>
+
+    <div class="lab">
+      <div class="lab-head">
+        <p class="lab-title">An inverted pendulum, held up by PID</p>
+        <span class="readout" id="readout">θ = 0.0°</span>
+      </div>
+      <canvas id="pend" width="600" height="340" role="img" aria-label="Simulated inverted pendulum balanced by a PID controller, with a trace of its angle over time. Click it to push the pendulum."></canvas>
+      <p class="status" id="status" aria-live="polite"></p>
+      <div class="gains">
+        <label><span class="top">K<sub>p</sub> <output id="kpv">40</output></span>
+          <input id="kp" type="range" min="0" max="80" step="0.5" value="40"></label>
+        <label><span class="top">K<sub>i</sub> <output id="kiv">4</output></span>
+          <input id="ki" type="range" min="0" max="20" step="0.5" value="4"></label>
+        <label><span class="top">K<sub>d</sub> <output id="kdv">8</output></span>
+          <input id="kd" type="range" min="0" max="20" step="0.5" value="8"></label>
+      </div>
+      <div class="lab-actions">
+        <button type="button" id="nudge">Push the pendulum</button>
+        <button type="button" class="quiet" id="reset">Reset</button>
+      </div>
+      <p class="caption">A live simulation. Click the pendulum or push it, then retune the gains. Drop K<sub>p</sub> below about 10 and gravity wins. Set K<sub>d</sub> to zero and watch it ring.</p>
+    </div>
+  </header>
+
+  <section aria-labelledby="now">
+    <h2 id="now">Now</h2>
+    <div class="body">
+      <p>I lead the control team for the IEEE EXO project, a lower-limb exoskeleton built with USF's CARRT Lab for balance correction during perturbed walking. My side covers gait-phase detection, the actuator control loop, and a sensing network on a CAN bus.</p>
+      <p>I also run PID workshops for the control team, and I'm leading us through building a rotary inverted pendulum as shared practice before we tune the real thing. The simulation above is a small version of that exercise.</p>
+      <p>On my own time I'm learning Verilog on an FPGA, working toward my first digital design project.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="work">
+    <h2 id="work">Projects</h2>
+    <ul class="projects body">
+      <li>
+        <h3><a href="https://github.com/YOUR_USERNAME/audio-spectrum-analyzer">Audio spectrum analyzer</a></h3>
+        <p>Real-time FFT visualizer that listens through a microphone and draws the spectrum on a TFT display. I debugged the whole path from mic to FFT to screen.</p>
+        <span class="stack">Teensy 4.0, ILI9341 display, C++</span>
+      </li>
+      <li>
+        <h3><a href="https://github.com/YOUR_USERNAME/stabilizing-spoon">Self-stabilizing spoon</a></h3>
+        <p>A tremor-cancelling spoon on a two-axis servo gimbal. An IMU measures the hand's motion and a PID loop drives the servos to hold the spoon level. This is where I learned filtering and PID from scratch.</p>
+        <span class="stack">ESP32 and XIAO ESP32, MPU6050, SG90 servos, C++</span>
+      </li>
+      <li>
+        <h3><a href="https://github.com/YOUR_USERNAME/rotary-inverted-pendulum">Rotary inverted pendulum</a> <span class="wip">in progress</span></h3>
+        <p>The EXO control team's shared testbed for tuning PID, with LQR experiments planned next.</p>
+      </li>
+      <li>
+        <h3><a href="https://github.com/YOUR_USERNAME/fpga-verilog">FPGA and Verilog</a> <span class="wip">in progress</span></h3>
+        <p>First steps into digital logic design, working down the stack toward how chips are built.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="interests">
+    <h2 id="interests">Interested in</h2>
+    <ul class="interests body">
+      <li>Control systems</li>
+      <li>Embedded systems</li>
+      <li>Digital design</li>
+      <li>Semiconductors</li>
+      <li>GPU architecture</li>
+      <li>RF</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="listening" class="listening">
+    <h2 id="listening">Listening to</h2>
+    <div class="body">
+      <!-- Replace YOUR-PROJECT with your Vercel domain and YOUR_SPOTIFY_ID with your Spotify user ID -->
+      <a href="https://open.spotify.com/user/YOUR_SPOTIFY_ID">
+        <img id="spotify"
+             data-src="https://YOUR-PROJECT.vercel.app/api/orchestrator?background_color=123F30&amp;border_color=123F30"
+             src="https://YOUR-PROJECT.vercel.app/api/orchestrator?background_color=123F30&amp;border_color=123F30"
+             alt="The song Oscar is playing on Spotify right now">
+      </a>
+      <p class="note">Live from my Spotify, refreshed every minute.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Oscar Carrillo, Tampa, Florida</span>
+    <a href="mailto:oscarc1@usf.edu">oscarc1@usf.edu</a>
+  </footer>
+</main>
+
+<script>
+/* ---------- Spotify widget: refresh every 60 s so it stays current ---------- */
+(function(){
+  var img = document.getElementById('spotify');
+  if(!img) return;
+  var base = img.getAttribute('data-src');
+  setInterval(function(){
+    if(document.hidden) return;
+    img.src = base + (base.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now();
+  }, 60000);
+})();
+
+/* ---------- Inverted pendulum with a PID controller ---------- */
+(function(){
+  var cv = document.getElementById('pend');
+  var ctx = cv.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var css = getComputedStyle(document.documentElement);
+  var C = {
+    ink: css.getPropertyValue('--ink').trim(),
+    green: css.getPropertyValue('--green').trim(),
+    gold: css.getPropertyValue('--gold').trim(),
+    muted: css.getPropertyValue('--muted').trim()
+  };
+
+  // Physics: theta measured from upright (rad). theta'' = (g/L) sin(theta) - c*theta' + u
+  var g = 9.81, L = 1, cUp = 0.15, cDown = 0.9, uMax = 35;
+  var th, w, integ, fallen, lastStatus = '';
+  var trace = [], N = 300;
+
+  var kp = document.getElementById('kp'), ki = document.getElementById('ki'), kd = document.getElementById('kd');
+  var kpv = document.getElementById('kpv'), kiv = document.getElementById('kiv'), kdv = document.getElementById('kdv');
+  var statusEl = document.getElementById('status'), readout = document.getElementById('readout');
+
+  function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+  function syncGains(){ kpv.textContent = kp.value; kiv.textContent = ki.value; kdv.textContent = kd.value; }
+  [kp, ki, kd].forEach(function(el){ el.addEventListener('input', syncGains); });
+  syncGains();
+
+  function reset(start){
+    th = start || 0; w = 0; integ = 0; fallen = false;
+    trace.length = 0;
+  }
+  reset(reduce ? 0 : 0.38);   // one small tip on load so you can watch it catch
+
+  function push(dir){
+    if(fallen) return;
+    w += (dir || (Math.random() < 0.5 ? -1 : 1)) * (2.2 + Math.random() * 0.8);
+  }
+  document.getElementById('nudge').addEventListener('click', function(){ push(); });
+  document.getElementById('reset').addEventListener('click', function(){ reset(0.2); });
+  cv.addEventListener('click', function(e){
+    var r = cv.getBoundingClientRect();
+    push(e.clientX - r.left < r.width / 2 ? 1 : -1);  // push away from the side you clicked
+  });
+
+  function step(dt){
+    var u = 0;
+    if(!fallen){
+      integ = clamp(integ + th * dt, -1.5, 1.5);           // anti-windup
+      u = -(+kp.value * th + +ki.value * integ + +kd.value * w);
+      u = clamp(u, -uMax, uMax);                             // actuator saturation
+    }
+    var a = (g / L) * Math.sin(th) - (fallen ? cDown : cUp) * w + u;
+    w += a * dt;
+    th += w * dt;
+    if(!fallen && Math.abs(th) > 1.25) fallen = true;
+  }
+
+  function setStatus(s){
+    if(s !== lastStatus){ statusEl.textContent = s; lastStatus = s; }
+  }
+
+  function draw(){
+    var W = cv.width, H = cv.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // --- trace strip (bottom 34%) ---
+    var tTop = H * 0.70, tH = H * 0.28, mid = tTop + tH / 2;
+    ctx.strokeStyle = C.gold; ctx.globalAlpha = 0.5; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, mid + 0.5); ctx.lineTo(W, mid + 0.5); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = C.green; ctx.lineWidth = 2; ctx.beginPath();
+    for(var i = 0; i < trace.length; i++){
+      var x = W - (trace.length - 1 - i) * (W / (N - 1));
+      var y = mid - clamp(trace[i] / 0.6, -1, 1) * (tH / 2);
+      if(i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // --- pendulum ---
+    var px = W / 2, py = H * 0.60, len = H * 0.48;
+    ctx.strokeStyle = C.gold; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(px - 70, py + 0.5); ctx.lineTo(px + 70, py + 0.5); ctx.stroke();
+
+    // faint upright reference
+    ctx.setLineDash([4, 6]); ctx.strokeStyle = C.gold; ctx.globalAlpha = 0.6;
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, py - len); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha = 1;
+
+    var bx = px + Math.sin(th) * len, by = py - Math.cos(th) * len;
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 3; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(bx, by); ctx.stroke();
+    ctx.fillStyle = C.green; ctx.beginPath(); ctx.arc(bx, by, 13, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fill();
+  }
+
+  var last = null;
+  function frame(t){
+    if(last === null) last = t;
+    var elapsed = Math.min((t - last) / 1000, 0.05); last = t;
+    var sub = 8, dt = elapsed / sub;
+    for(var i = 0; i < sub; i++) step(dt);
+
+    var norm = Math.atan2(Math.sin(th), Math.cos(th));
+    trace.push(norm); if(trace.length > N) trace.shift();
+    readout.textContent = 'θ = ' + (norm * 180 / Math.PI).toFixed(1) + '°';
+
+    if(fallen) setStatus('It fell over. Raise Kp or Kd, then reset.');
+    else if(Math.abs(th) < 0.02 && Math.abs(w) < 0.05) setStatus('Balanced.');
+    else setStatus('Recovering…');
+
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
