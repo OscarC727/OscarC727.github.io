@@ -75,8 +75,7 @@
   .castbar{position:relative;height:12px;margin-top:.35rem;border-radius:6px;background:rgba(0,0,0,.6);border:1px solid var(--bronze);overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.8)}
   .castbar i{position:absolute;inset:0 auto 0 0;width:62%;border-radius:6px;
     background:linear-gradient(180deg,#FFF1C6,#E4CB8C 45%,#A8843F);
-    box-shadow:0 0 10px rgba(228,203,140,.7);animation:cast 7s linear infinite}
-  @keyframes cast{from{width:0}to{width:100%}}
+    box-shadow:0 0 10px rgba(228,203,140,.7);transition:width 1s linear}
   .cast-note{margin:.35rem 0 0;font-size:.9rem;color:var(--muted)}
   .np-title{margin:0;color:var(--aether);font-family:"Cinzel",Georgia,serif;font-size:clamp(.95rem,2vw,1.1rem);letter-spacing:.04em}
   .name{
@@ -199,7 +198,8 @@
     background:linear-gradient(180deg,#34405A,#1A2236);border:1px solid var(--bronze);border-radius:6px;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px rgba(0,0,0,.5);
   }
-  .btn:hover{border-color:var(--bronze-hi);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 12px rgba(228,203,140,.4)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn:not(:disabled):hover{border-color:var(--bronze-hi);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 12px rgba(228,203,140,.4)}
 
   /* chat log */
   .chat-tabs{display:flex;gap:.25rem;margin:0 1.3rem .6rem}
@@ -249,7 +249,7 @@
   .objectives li.done{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(156,165,184,.6)}
   .objectives li.done::before{background:var(--hp);border-color:var(--hp);box-shadow:0 0 6px rgba(123,216,106,.7)}
 
-  @media (prefers-reduced-motion:reduce){.banner{transition:none}.castbar i{animation:none}}
+  @media (prefers-reduced-motion:reduce){.banner{transition:none}.castbar i{transition:none}}
 </style>
 </head>
 <body>
@@ -263,13 +263,13 @@
         <h1 class="name">Oscar Carrillo <span class="fc">«EXO»</span></h1>
         <p class="job">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#15203A" stroke="#B8995A" stroke-width="1.5"/><path d="M5 13 H9 L11 8 L13 16 L15 11 H19" fill="none" stroke="#79C8EE" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>
-          <span>Electrical engineer in training <span class="muted">at the University of South Florida</span></span>
+          <span>Electrical Engineering student <span class="muted">at the University of South Florida</span></span>
         </p>
       </div>
-      <div class="cast" aria-label="Currently working on: A Balancing Act, the team's rotary inverted pendulum">
-        <div class="cast-top"><span class="lbl">Casting</span><span class="spell">A Balancing Act</span></div>
-        <div class="castbar" aria-hidden="true"><i></i></div>
-        <p class="cast-note">Rotary inverted pendulum, with the EXO control team</p>
+      <div class="cast" id="cast">
+        <div class="cast-top"><span class="lbl">Casting</span><span class="spell" id="cast-spell">Studying</span></div>
+        <div class="castbar" aria-hidden="true"><i id="cast-fill"></i></div>
+        <p class="cast-note" id="cast-note">Until 10:00 PM ET</p>
       </div>
     </div>
     <nav class="hotbar" aria-label="Contact and shortcuts">
@@ -310,7 +310,6 @@
             <li><span>Control systems</span><span class="rank hi">Practiced</span></li>
             <li><span>Embedded systems</span><span class="rank hi">Practiced</span></li>
             <li><span>Digital design</span><span class="rank">Learning</span></li>
-            <li><span>Semiconductors</span><span class="rank">Studying</span></li>
             <li><span>GPU architecture</span><span class="rank">Curious</span></li>
             <li><span>RF</span><span class="rank">Curious</span></li>
           </ul>
@@ -330,7 +329,7 @@
               <span class="t-artist" id="track-artist"></span>
             </span>
           </a>
-          <p class="note" id="track-note">Tuning the orchestrion…</p>
+          <p class="note" id="track-note">From my Spotify</p>
         </div>
       </section>
     </div>
@@ -354,15 +353,15 @@
                 <span class="q-kind">Main scenario</span>
                 <div class="q-head"><h3>The Lower-Limb Exoskeleton</h3><span class="q-state on">Active</span></div>
               </div>
-              <p>Control lead for the IEEE EXO team, building an exoskeleton for balance correction during perturbed walking. I own gait-phase detection, the actuator control loop, and a sensing network on a CAN bus.</p>
+              <p>I'm the control lead for IEEE EXO. We're building a lower-limb exoskeleton for balance correction during perturbed walking. I handle gait-phase detection, the actuator control loop, and the sensor network over CAN.</p>
             </li>
             <li class="quest">
               <svg class="q-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L28 16 L16 29 L4 16 Z" fill="#1A2640" stroke="#79C8EE" stroke-width="2"/><path d="M16 10 V22 M10 16 H22" stroke="#79C8EE" stroke-width="2.6" stroke-linecap="round"/></svg>
               <div>
                 <span class="q-kind" style="color:var(--aether)">Feature quest</span>
-                <div class="q-head"><h3><a href="https://github.com/oscarc727/rotary-inverted-pendulum">A Balancing Act</a></h3><span class="q-state on">Active</span></div>
+                <div class="q-head"><h3><a href="https://github.com/oscarc727/rotary-inverted-pendulum">In the Balance</a></h3><span class="q-state on">Active</span></div>
               </div>
-              <p>Leading the control team in building a rotary inverted pendulum as shared practice, alongside PID workshops I run for the team. All code runs on Linux on the Jetson Nano, the same environment as the exo's legs.</p>
+              <p>Building a rotary inverted pendulum with the control team as practice before the exo, plus PID workshops I run alongside it. All the code runs on Linux on the Jetson Nano, same as the legs will.</p>
             </li>
             <li class="quest">
               <svg class="q-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L28 16 L16 29 L4 16 Z" fill="#1A2640" stroke="#9CA5B8" stroke-width="2"/><path d="M10.5 16 L14.5 20 L21.5 12" fill="none" stroke="#9CA5B8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -370,7 +369,7 @@
                 <span class="q-kind">Complete</span>
                 <div class="q-head"><h3><a href="https://github.com/oscarc727/audio-spectrum-analyzer">Audio Spectrum Analyzer</a></h3><span class="q-state">Built</span></div>
               </div>
-              <p>A real-time FFT visualizer that listens through a microphone and draws the spectrum on a TFT display. I debugged the whole path from mic to FFT to screen.</p>
+              <p>Real-time audio spectrum on a TFT display. A mic feeds an FFT running on a Teensy, and I debugged the whole chain from the mic to the screen.</p>
               <span class="kit">Teensy 4.0, ILI9341 display, C++</span>
             </li>
             <li class="quest">
@@ -379,7 +378,7 @@
                 <span class="q-kind">Complete</span>
                 <div class="q-head"><h3><a href="https://github.com/oscarc727/stabilizing-spoon">Self-Stabilizing Spoon</a></h3><span class="q-state">Built</span></div>
               </div>
-              <p>A tremor-cancelling spoon on a two-axis servo gimbal. An IMU measures the hand's motion and a PID loop drives the servos to keep the spoon level. Where I learned filtering and PID from scratch.</p>
+              <p>Tremor-cancelling spoon on a 2-axis servo gimbal. An IMU reads the hand's motion and a PID loop keeps the spoon level. This is the project where I first learned PID and sensor filtering.</p>
               <span class="kit">ESP32 and XIAO ESP32, MPU6050, SG90 servos, C++</span>
             </li>
             <li class="quest">
@@ -388,7 +387,7 @@
                 <span class="q-kind">Side quest</span>
                 <div class="q-head"><h3><a href="https://github.com/oscarc727/fpga-verilog">Into the Silicon</a></h3><span class="q-state">Started</span></div>
               </div>
-              <p>Learning Verilog on an FPGA, working down the stack toward how chips are actually built.</p>
+              <p>Learning Verilog on an FPGA dev board, starting small and building up to my first real digital design project.</p>
             </li>
           </ul>
         </div>
@@ -397,23 +396,24 @@
         <div class="pad" role="tabpanel" id="panel-training" aria-labelledby="tab-training" hidden>
           <div class="duty">
             <div class="t-top">
-              <p>Keep the pendulum upright. A live simulation of the same PID loop my team is building in hardware. Click it or push it, then retune the gains.</p>
-              <span class="readout" id="readout">θ = 0.0°</span>
+              <p>A sim of the pendulum my team is building. Swing it up, let the PID catch it, then mess with the gains and see what happens.</p>
+              <span class="readout" id="readout">θ = 180.0°</span>
             </div>
             <ul class="objectives" aria-label="Training objectives">
               <li class="o-h" style="grid-template-columns:1fr">Objectives</li>
+              <li id="obj-swing">Swing it up</li>
               <li id="obj-push">Recover from a push</li>
-              <li id="obj-ki">Hold steady with Ki at 0</li>
-              <li id="obj-kd">Set Kd to 0 and watch it ring</li>
+              <li id="obj-ki">Hold it with Ki at 0</li>
+              <li id="obj-kd">Set Kd to 0 and push it</li>
               <li id="obj-fall">Drop Kp below 10, then push it</li>
             </ul>
           </div>
           <div class="stage">
-            <canvas id="pend" width="720" height="360" role="img" aria-label="Simulated inverted pendulum balanced by a PID controller, with a trace of its angle over time. Click to push it."></canvas>
+            <canvas id="pend" width="720" height="400" role="img" aria-label="Simulated pendulum on a cart. It starts hanging down; Swing up rocks the cart to raise it, then a PID controller balances it upright. A trace of its angle runs along the bottom. Click it to push it while it is balancing."></canvas>
             <div class="banner" id="banner" aria-hidden="true"><span class="rule"></span><strong id="banner-text">Balance Restored</strong><span class="rule"></span></div>
           </div>
           <div class="gauges">
-            <div class="gauge"><span>Stability <b id="hpv">100%</b></span><div class="bar"><i id="hpbar"></i></div></div>
+            <div class="gauge"><span>Stability <b id="hpv">0%</b></span><div class="bar"><i id="hpbar"></i></div></div>
             <div class="gauge"><span>Motor effort <b id="mpv">0%</b></span><div class="bar"><i id="mpbar"></i></div></div>
           </div>
           <p class="t-status" id="t-status" aria-live="polite"></p>
@@ -423,7 +423,8 @@
             <label><span class="top">Kd <output id="kdv">8</output></span><input id="kd" type="range" min="0" max="20" step="0.5" value="8"></label>
           </div>
           <div class="t-actions">
-            <button type="button" class="btn" id="nudge">Push the pendulum</button>
+            <button type="button" class="btn" id="swing">Swing up</button>
+            <button type="button" class="btn" id="nudge" disabled>Push the pendulum</button>
             <button type="button" class="btn" id="reset">Reset</button>
           </div>
         </div>
@@ -453,12 +454,12 @@
       </div>
       <ul class="log" id="log">
         <li data-ch="sys"><span class="sys">You joined the IEEE EXO team as Control Lead.</span></li>
-        <li data-ch="team"><span class="team">[Team] New quest accepted: build a rotary inverted pendulum with the control team.</span></li>
-        <li data-ch="team"><span class="team">[Team] PID workshops are now running for the control team.</span></li>
-        <li data-ch="sys"><span class="sys">You learned PID control while building a self-stabilizing spoon.</span></li>
+        <li data-ch="team"><span class="team">[Team] New quest: In the Balance.</span></li>
+        <li data-ch="team"><span class="team">[Team] PID workshops started for the control team.</span></li>
+        <li data-ch="sys"><span class="sys">You learned PID from the stabilizing spoon build.</span></li>
         <li data-ch="school"><span class="school">[School] Now taking Fundamentals of Digital Circuits.</span></li>
         <!-- Edit or remove this line to match what you're looking for -->
-        <li data-ch="sys"><span class="sys">Open to research and internship opportunities. Send a message: <a href="mailto:oscarc1@usf.edu">oscarc1@usf.edu</a></span></li>
+        <li data-ch="sys"><span class="sys">Looking for research and internship opportunities. Reach me at <a href="mailto:oscarc1@usf.edu">oscarc1@usf.edu</a></span></li>
       </ul>
     </section>
   </div>
@@ -467,6 +468,38 @@
 </main>
 
 <script>
+/* ---------- Cast bar: what I'm probably doing right now (Eastern time) ----------
+   The bar shows how far through the current block of the day it is. */
+(function(){
+  var blocks = [
+    { start: 0,    end: 600,  spell: 'Sleep' },      // 12 AM to 10 AM
+    { start: 600,  end: 960,  spell: 'School' },     // 10 AM to 4 PM
+    { start: 960,  end: 1320, spell: 'Studying' },   // 4 PM to 10 PM
+    { start: 1320, end: 1440, spell: 'Tinkering' }   // 10 PM to midnight
+  ];
+  var fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' });
+  var spellEl = document.getElementById('cast-spell'), fill = document.getElementById('cast-fill');
+  var note = document.getElementById('cast-note'), cast = document.getElementById('cast');
+  function label(mins){
+    if(mins === 1440) return 'midnight';
+    var h = Math.floor(mins / 60), m = mins % 60;
+    return ((h % 12) || 12) + ':' + (m < 10 ? '0' : '') + m + (h < 12 ? ' AM' : ' PM');
+  }
+  function update(){
+    var parts = fmt.formatToParts(new Date()), h = 0, m = 0;
+    parts.forEach(function(p){ if(p.type === 'hour') h = +p.value % 24; if(p.type === 'minute') m = +p.value; });
+    var now = h * 60 + m, b = blocks[0];
+    blocks.forEach(function(x){ if(now >= x.start && now < x.end) b = x; });
+    var pct = (now - b.start) / (b.end - b.start) * 100;
+    spellEl.textContent = b.spell;
+    fill.style.width = Math.max(2, pct).toFixed(1) + '%';
+    note.textContent = 'Until ' + label(b.end) + ' ET';
+    cast.setAttribute('aria-label', 'Right now: ' + b.spell + ', until ' + label(b.end) + ' Eastern time');
+  }
+  update();
+  setInterval(update, 30000);
+})();
+
 /* ---------- Journal tabs ---------- */
 var selectTab;
 (function(){
@@ -531,7 +564,6 @@ var selectTab;
     state.classList.toggle('idle', !d.is_playing);
     stateText.textContent = d.is_playing ? 'Now playing' : 'Last played';
     card.hidden = false;
-    note.textContent = 'From my Spotify, refreshed every minute.';
   }
   function load(){
     if(document.hidden) return;
@@ -539,27 +571,35 @@ var selectTab;
       .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(render)
       .catch(function(){
-        if(!shown){ note.innerHTML = 'Spotify isn\u2019t answering right now. <a href="https://open.spotify.com/user/31gltpu6vcdrmfenlafpldsm2z6m">Open my profile</a> instead.'; }
+        if(!shown){ note.innerHTML = '<a href="https://open.spotify.com/user/31gltpu6vcdrmfenlafpldsm2z6m">From my Spotify</a>'; }
       });
   }
   load();
   setInterval(load, 60000);
 })();
 
-/* ---------- Pendulum with PID ---------- */
+/* ---------- Cart-pole: swing-up, then PID balance ----------
+   theta is measured from straight up (positive = leaning right).
+   The motor drives the cart; its acceleration a is the control input:
+     theta'' = g*sin(theta) - a*cos(theta)
+   Swing-up pumps energy into the pendulum, then the PID catches it near the top. */
 (function(){
   var cv = document.getElementById('pend'), ctx = cv.getContext('2d');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var g = 9.81, L = 1, cUp = 0.15, cDown = 0.9, uMax = 35;
-  var th = 0, w = 0, integ = 0, u = 0, fallen = false, disturbed = false, calm = 0, pushed = false;
+  var g = 9.81, aMax = 30, swingA = 7, RAIL = 2.4, PX = 110;
+  var th = Math.PI, w = 0, x = 0, v = 0, integ = 0, a = 0;
+  var mode = 'down';            // down | swing | balance
+  var disturbed = false, pushed = false, calm = 0, kdRing = 0;
   var trace = [], N = 300, lastStatus = '';
   var kp = document.getElementById('kp'), ki = document.getElementById('ki'), kd = document.getElementById('kd');
   var statusEl = document.getElementById('t-status'), readout = document.getElementById('readout');
   var hpbar = document.getElementById('hpbar'), mpbar = document.getElementById('mpbar');
   var hpv = document.getElementById('hpv'), mpv = document.getElementById('mpv');
-  var banner = document.getElementById('banner'), bannerTimer = null;
+  var swingBtn = document.getElementById('swing'), pushBtn = document.getElementById('nudge');
+  var banner = document.getElementById('banner'), bannerText = document.getElementById('banner-text'), bannerTimer = null;
+  var objs = { swing:false, push:false, ki:false, kd:false, fall:false }, allDone = false;
 
-  function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+  function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
+  function wrap(t){ return Math.atan2(Math.sin(t), Math.cos(t)); }
   function sync(){
     document.getElementById('kpv').textContent = kp.value;
     document.getElementById('kiv').textContent = ki.value;
@@ -568,16 +608,9 @@ var selectTab;
   [kp, ki, kd].forEach(function(el){ el.addEventListener('input', sync); });
   sync();
 
-  function reset(start){ th = start || 0; w = 0; integ = 0; fallen = false; disturbed = !!start; calm = 0; trace.length = 0; }
-  function push(dir){
-    if(fallen) return;
-    w += (dir || (Math.random() < .5 ? -1 : 1)) * (2.2 + Math.random() * .8);
-    disturbed = true; calm = 0; pushed = true;
-  }
-  var bannerText = document.getElementById('banner-text');
-  var objs = { push:false, ki:false, kd:false, fall:false }, kdRing = 0, allDone = false;
+  function setStatus(s){ if(s !== lastStatus){ statusEl.textContent = s; lastStatus = s; } }
   function showBanner(text){
-    bannerText.textContent = text || 'Balance Restored';
+    bannerText.textContent = text;
     banner.classList.add('show');
     clearTimeout(bannerTimer);
     bannerTimer = setTimeout(function(){ banner.classList.remove('show'); }, 2400);
@@ -587,97 +620,149 @@ var selectTab;
     objs[key] = true;
     document.getElementById('obj-' + key).classList.add('done');
     statusEl.textContent = 'Objective complete: ' + label + '.'; lastStatus = statusEl.textContent;
-    if(!allDone && objs.push && objs.ki && objs.kd && objs.fall){
+    if(!allDone && objs.swing && objs.push && objs.ki && objs.kd && objs.fall){
       allDone = true;
       setTimeout(function(){ showBanner('Training Complete'); statusEl.textContent = 'All objectives complete.'; lastStatus = statusEl.textContent; }, 900);
     }
   }
-  document.getElementById('nudge').addEventListener('click', function(){ push(); });
-  document.getElementById('reset').addEventListener('click', function(){ reset(0.2); });
+  function setMode(m){
+    mode = m;
+    swingBtn.disabled = (m !== 'down');
+    pushBtn.disabled = (m !== 'balance');
+  }
+  function reset(){ th = Math.PI; w = 0; x = 0; v = 0; integ = 0; a = 0; trace.length = 0; disturbed = pushed = false; setMode('down'); }
+
+  swingBtn.addEventListener('click', function(){ if(mode === 'down'){ integ = 0; setMode('swing'); } });
+  pushBtn.addEventListener('click', function(){ push(); });
+  document.getElementById('reset').addEventListener('click', reset);
   cv.addEventListener('click', function(e){
+    if(mode !== 'balance') return;
     var r = cv.getBoundingClientRect();
     push(e.clientX - r.left < r.width / 2 ? 1 : -1);
   });
-  window.addEventListener('training-shown', function(){ if(!reduce && !fallen && Math.abs(th) < .02) reset(0.38); });
+  function push(dir){
+    if(mode !== 'balance') return;
+    w += (dir || (Math.random() < .5 ? -1 : 1)) * (1.6 + Math.random() * .6);
+    disturbed = pushed = true; calm = 0;
+  }
 
   function step(dt){
-    u = 0;
-    if(!fallen){
-      integ = clamp(integ + th * dt, -1.5, 1.5);
-      u = clamp(-(+kp.value * th + +ki.value * integ + +kd.value * w), -uMax, uMax);
+    var E = 0.5 * w * w + g * (Math.cos(th) - 1);      // 0 when resting upright
+    if(mode === 'swing'){
+      if(Math.abs(wrap(th)) < 0.3){ th = wrap(th); integ = 0; setMode('balance'); disturbed = true; calm = 0; complete('swing', 'swung it up'); }
+      else {
+        a = 1.2 * E * w * Math.cos(th);                // pump energy toward the top
+        if(Math.abs(w) < .05 && E < -2 * g + .05) a = swingA;   // kick it off from rest
+        a = clamp(a, -swingA, swingA) - 1.5 * x - 2 * v;        // keep the cart near center
+      }
     }
-    w += ((g / L) * Math.sin(th) - (fallen ? cDown : cUp) * w + u) * dt + (Math.random() - .5) * .004;
+    if(mode === 'balance'){
+      integ = clamp(integ + th * dt, -1.5, 1.5);
+      a = +kp.value * th + +ki.value * integ + +kd.value * w + 1.2 * x + 2 * v;
+      a = clamp(a, -aMax, aMax);
+    }
+    if(mode === 'down') a = -4 * v;                      // cart coasts to a stop
+
+    w += (g * Math.sin(th) - a * Math.cos(th) - .05 * w) * dt + (Math.random() - .5) * .004;
     th += w * dt;
-    if(fallen && Math.abs(th) > 1.45){ th = th > 0 ? 1.45 : -1.45; w = 0; }
-    if(!fallen && Math.abs(th) > 0.9){ fallen = true; disturbed = false; }
+    v += a * dt; x += v * dt;
+    if(Math.abs(x) > RAIL){ x = x > 0 ? RAIL : -RAIL; v = 0; }  // end stops
+
+    if(mode === 'balance' && Math.abs(th) > 0.9){
+      setMode('down'); disturbed = false;
+      if(+kp.value < 10) complete('fall', 'gravity won below Kp 10');
+      if(+kd.value === 0) complete('kd', 'saw what happens with Kd at 0');
+    }
   }
-  function setStatus(s){ if(s !== lastStatus){ statusEl.textContent = s; lastStatus = s; } }
 
   function draw(){
     var W = cv.width, H = cv.height;
     ctx.clearRect(0, 0, W, H);
-    var tTop = H * .72, tH = H * .24, mid = tTop + tH / 2;
+    var railY = 214, cx = W / 2 + x * PX, len = 118;
+
+    // angle trace along the bottom
+    var mid = 366, half = 22;
     ctx.strokeStyle = 'rgba(184,153,90,.35)'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(0, mid + .5); ctx.lineTo(W, mid + .5); ctx.stroke();
     ctx.strokeStyle = '#79C8EE'; ctx.lineWidth = 2; ctx.beginPath();
+    var pen = false;
     for(var i = 0; i < trace.length; i++){
-      var x = W - (trace.length - 1 - i) * (W / (N - 1));
-      var y = mid - clamp(trace[i] / .6, -1, 1) * (tH / 2);
-      if(i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      if(trace[i] === null){ pen = false; continue; }   // only trace while balancing
+      var tx = W - (trace.length - 1 - i) * (W / (N - 1));
+      var ty = mid - clamp(trace[i] / .6, -1, 1) * half;
+      if(!pen){ ctx.moveTo(tx, ty); pen = true; } else ctx.lineTo(tx, ty);
     }
     ctx.stroke();
-    var px = W / 2, py = H * .62, len = H * .48;
-    ctx.strokeStyle = '#B8995A'; ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.moveTo(px - 80, py + .5); ctx.lineTo(px + 80, py + .5); ctx.stroke();
-    ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(184,153,90,.5)';
-    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px, py - len); ctx.stroke(); ctx.setLineDash([]);
-    var bx = px + Math.sin(th) * len, by = py - Math.cos(th) * len;
+
+    // rail and end stops
+    var rl = W / 2 - RAIL * PX - 44, rr = W / 2 + RAIL * PX + 44;
+    ctx.strokeStyle = '#B8995A'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(rl, railY + .5); ctx.lineTo(rr, railY + .5); ctx.stroke();
+    ctx.fillStyle = '#B8995A';
+    ctx.fillRect(rl - 4, railY - 10, 4, 20); ctx.fillRect(rr, railY - 10, 4, 20);
+
+    // cart
+    ctx.fillStyle = '#2A3752'; ctx.strokeStyle = '#E4CB8C'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.rect(cx - 38, railY - 26, 76, 22); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#E4CB8C';
+    ctx.beginPath(); ctx.arc(cx - 22, railY - 2, 4, 0, Math.PI * 2); ctx.arc(cx + 22, railY - 2, 4, 0, Math.PI * 2); ctx.fill();
+
+    // upright reference
+    var py = railY - 15;   // pivot sits on the front of the cart
+    ctx.setLineDash([4, 6]); ctx.strokeStyle = 'rgba(184,153,90,.45)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx, py); ctx.lineTo(cx, py - len); ctx.stroke(); ctx.setLineDash([]);
+
+    // rod and crystal bob
+    var bx = cx + Math.sin(th) * len, by = py - Math.cos(th) * len;
     ctx.strokeStyle = '#F3E6C0'; ctx.lineWidth = 4; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(bx, by); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, py); ctx.lineTo(bx, by); ctx.stroke();
     ctx.save(); ctx.translate(bx, by); ctx.rotate(th);
-    ctx.shadowColor = 'rgba(121,200,238,.8)'; ctx.shadowBlur = 16;
-    ctx.fillStyle = '#79C8EE';
-    ctx.beginPath(); ctx.moveTo(0, -20); ctx.lineTo(12, 0); ctx.lineTo(0, 20); ctx.lineTo(-12, 0); ctx.closePath(); ctx.fill();
+    ctx.shadowColor = 'rgba(121,200,238,.8)'; ctx.shadowBlur = 16; ctx.fillStyle = '#79C8EE';
+    ctx.beginPath(); ctx.moveTo(0, -18); ctx.lineTo(11, 0); ctx.lineTo(0, 18); ctx.lineTo(-11, 0); ctx.closePath(); ctx.fill();
     ctx.restore();
-    ctx.fillStyle = '#F3E6C0'; ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#F3E6C0'; ctx.beginPath(); ctx.arc(cx, py, 5, 0, Math.PI * 2); ctx.fill();
   }
 
   var last = null;
   function frame(t){
     if(last === null) last = t;
     var el = Math.min((t - last) / 1000, .05); last = t;
-    for(var i = 0; i < 8; i++) step(el / 8);
-    var norm = Math.atan2(Math.sin(th), Math.cos(th));
-    trace.push(norm); if(trace.length > N) trace.shift();
-    readout.textContent = 'θ = ' + (norm * 180 / Math.PI).toFixed(1) + '°';
+    for(var i = 0; i < 10; i++) step(el / 10);
 
-    var hp = fallen ? 0 : Math.round(clamp(1 - Math.abs(th) / 0.9, 0, 1) * 100);
-    var mp = Math.round(Math.abs(u) / uMax * 100);
+    var tn = wrap(th);
+    trace.push(mode === 'balance' ? tn : null); if(trace.length > N) trace.shift();
+    var deg = tn * 180 / Math.PI; if(Math.abs(deg) > 179.5) deg = 180;
+    readout.textContent = 'θ = ' + deg.toFixed(1) + '°';
+    var hp = mode === 'balance' ? Math.round(clamp(1 - Math.abs(th) / .9, 0, 1) * 100) : 0;
+    var mp = Math.round(Math.min(1, Math.abs(a) / aMax) * 100);
     hpbar.style.width = hp + '%'; hpv.textContent = hp + '%';
     mpbar.style.width = mp + '%'; mpv.textContent = mp + '%';
 
-    var still = Math.abs(th) < .02 && Math.abs(w) < .05;
-    if(fallen){
-      setStatus('It fell over. Raise Kp or Kd, then reset.');
-      if(+kp.value < 10) complete('fall', 'gravity wins below Kp 10');
+    var busy = lastStatus.indexOf('Objective') === 0 && Math.abs(th) < .2;
+    if(mode === 'down'){
+      if(!busy) setStatus(objs.swing ? 'It fell. Hit Swing up to go again.' : 'Hanging. Hit Swing up to get started.');
+    } else if(mode === 'swing'){
+      setStatus('Swinging up…');
+    } else {
+      var still = Math.abs(th) < .02 && Math.abs(w) < .05;
+      if(still){
+        calm += el;
+        if(disturbed && calm > .6){
+          disturbed = false;
+          if(pushed){ pushed = false; complete('push', 'recovered from a push'); }
+          if(!allDone) showBanner('Balance Restored');
+        }
+        else if(+ki.value === 0 && calm > 1.5) complete('ki', 'held it with Ki at 0');
+        else if(!busy && !banner.classList.contains('show')) setStatus('Holding steady.');
+      } else { calm = 0; if(!busy) setStatus('Recovering…'); }
+      if(+kd.value === 0 && Math.abs(th) > .035){ kdRing += el; if(kdRing > 2) complete('kd', 'saw what happens with Kd at 0'); }
+      else if(+kd.value !== 0) kdRing = 0;
     }
-    else if(still){
-      calm += el;
-      if(disturbed && calm > .6){
-        disturbed = false;
-        if(pushed){ pushed = false; complete('push', 'recovered from a push'); }
-        if(!allDone) showBanner('Balance Restored');
-      }
-      else if(+ki.value === 0 && calm > 1.5) complete('ki', 'held steady with Ki at 0');
-      else if(!banner.classList.contains('show') && lastStatus.indexOf('Objective') !== 0) setStatus('Holding steady.');
-    } else { calm = 0; if(lastStatus.indexOf('Objective') !== 0 || Math.abs(th) > .2) setStatus('Recovering…'); }
-
-    if(!fallen && +kd.value === 0 && Math.abs(th) > .035){ kdRing += el; if(kdRing > 2) complete('kd', 'watched it ring with Kd at 0'); }
-    else if(+kd.value !== 0) kdRing = 0;
 
     draw();
     requestAnimationFrame(frame);
   }
+  reset();
   requestAnimationFrame(frame);
 })();
 </script>
