@@ -162,44 +162,6 @@
   .g-slot h3{font-size:.9rem;color:var(--muted)}
   .g-slot p{margin:0;line-height:1.35}
 
-  /* training */
-  .t-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:.7rem}
-  .t-top p{margin:0;max-width:54ch}
-  .readout{font-variant-numeric:tabular-nums;color:var(--aether)}
-  .stage{position:relative}
-  .stage canvas{display:block;width:100%;height:auto;cursor:grab;background:var(--panel-deep);border:1px solid rgba(184,153,90,.2);border-radius:6px}
-  .banner{
-    position:absolute;left:0;right:0;top:30%;display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:.6rem 0;
-    background:linear-gradient(90deg,transparent,rgba(8,12,22,.92) 20%,rgba(8,12,22,.92) 80%,transparent);
-    pointer-events:none;opacity:0;transition:opacity .35s ease;
-  }
-  .banner.show{opacity:1}
-  .banner .rule{width:min(70%,420px);height:1px;background:linear-gradient(90deg,transparent,var(--bronze-hi),transparent)}
-  .banner strong{
-    font-family:"Cinzel",Georgia,serif;font-weight:700;font-size:clamp(1.4rem,4vw,2.3rem);letter-spacing:.08em;color:var(--title);
-    text-shadow:0 0 16px rgba(228,203,140,.6),0 2px 0 #000;
-  }
-  .gauges{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.9rem 0 .4rem}
-  .gauge span{display:flex;justify-content:space-between;font-size:.95rem;color:var(--muted)}
-  .bar{height:10px;border-radius:5px;background:rgba(0,0,0,.55);border:1px solid rgba(184,153,90,.3);overflow:hidden;margin-top:.25rem}
-  .bar i{display:block;height:100%;width:100%;border-radius:5px}
-  #hpbar{background:linear-gradient(180deg,#A6EE92,var(--hp) 55%,#4E9E41)}
-  #mpbar{background:linear-gradient(180deg,#E3A9F2,var(--mp) 55%,#8A4AA0);width:0}
-  .t-status{min-height:1.6em;margin:.3rem 0 .8rem;color:var(--muted)}
-  .gains{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-  .gains label{display:flex;flex-direction:column;color:var(--muted);font-size:1rem}
-  .gains .top{display:flex;justify-content:space-between}
-  .gains output{color:var(--text);font-variant-numeric:tabular-nums}
-  input[type=range]{width:100%;accent-color:var(--bronze);min-height:28px;margin:.3rem 0 0}
-  .t-actions{display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
-  .btn{
-    display:inline-flex;align-items:center;min-height:44px;padding:.4rem 1.2rem;
-    font:inherit;font-family:"Cinzel",Georgia,serif;font-size:.95rem;letter-spacing:.04em;color:var(--title);cursor:pointer;
-    background:linear-gradient(180deg,#34405A,#1A2236);border:1px solid var(--bronze);border-radius:6px;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px rgba(0,0,0,.5);
-  }
-  .btn:disabled{opacity:.45;cursor:not-allowed}
-  .btn:not(:disabled):hover{border-color:var(--bronze-hi);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 12px rgba(228,203,140,.4)}
 
   /* chat log */
   .chat-tabs{display:flex;gap:.25rem;margin:0 1.3rem .6rem}
@@ -238,18 +200,8 @@
 
   footer{text-align:center;color:var(--muted);font-size:.95rem;font-family:"Cinzel",Georgia,serif;letter-spacing:.05em}
 
-  /* duty objectives */
-  .duty{display:grid;gap:1rem;margin-bottom:.9rem}
-  @media (min-width:760px){.duty{grid-template-columns:1fr 15.5rem;align-items:start}}
-  .objectives{margin:0;padding:.8rem 1rem;list-style:none;background:rgba(0,0,0,.35);border:1px solid var(--bronze-dim);border-radius:6px;display:grid;gap:.45rem;font-size:.95rem}
-  .objectives .o-h{font-family:"Cinzel",Georgia,serif;font-weight:600;color:var(--bronze-hi);letter-spacing:.04em;font-size:.9rem;margin-bottom:.1rem}
-  .objectives li{display:grid;grid-template-columns:14px 1fr;gap:.55rem;align-items:start;color:var(--text)}
-  .objectives li::before{content:"";width:9px;height:9px;margin-top:.45em;transform:rotate(45deg);border:1px solid var(--bronze);background:transparent}
-  .objectives .o-h::before{display:none}
-  .objectives li.done{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(156,165,184,.6)}
-  .objectives li.done::before{background:var(--hp);border-color:var(--hp);box-shadow:0 0 6px rgba(123,216,106,.7)}
 
-  @media (prefers-reduced-motion:reduce){.banner{transition:none}.castbar i{transition:none}}
+  @media (prefers-reduced-motion:reduce){.castbar i{transition:none}}
 </style>
 </head>
 <body>
@@ -285,10 +237,10 @@
         <span class="face"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 L3.5 12 L8.5 17 M15.5 7 L20.5 12 L15.5 17 M13.5 5 L10.5 19" fill="none" stroke="#E4CB8C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span class="key">3</span>GitHub
       </a>
-      <button type="button" class="slot-btn" id="goto-training">
-        <span class="face"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="20" x2="18" y2="20" stroke="#E4CB8C" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="20" x2="15" y2="7" stroke="#E4CB8C" stroke-width="1.8" stroke-linecap="round"/><circle cx="15.5" cy="5.5" r="2.4" fill="#79C8EE"/></svg></span>
-        <span class="key">4</span>Training
-      </button>
+      <a class="slot-btn" href="resume.pdf">
+        <span class="face"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3 H14 L19 8 V21 H6 Z" fill="none" stroke="#E4CB8C" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3 V8 H19" fill="none" stroke="#E4CB8C" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12 H16 M9 15 H16 M9 18 H13" stroke="#79C8EE" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <span class="key">4</span>Resume
+      </a>
     </nav>
   </header>
 
@@ -301,7 +253,7 @@
           <dl class="stat">
             <dt>Discipline</dt><dd>Electrical engineering</dd>
             <dt>Affiliation</dt><dd>University of South Florida</dd>
-            <dt>Company</dt><dd>IEEE EXO</dd>
+            <dt>Club</dt><dd>IEEE EXO</dd>
             <dt>Role</dt><dd>Control Lead</dd>
             <dt>Home</dt><dd>Tampa, Florida</dd>
           </dl>
@@ -340,7 +292,6 @@
         <div class="titlebar"><span class="gem" aria-hidden="true"></span><h2 id="journal-title">Journal</h2></div>
         <div class="tabs" role="tablist" aria-label="Journal">
           <button class="tab" role="tab" id="tab-quests" aria-controls="panel-quests" aria-selected="true">Quests</button>
-          <button class="tab" role="tab" id="tab-training" aria-controls="panel-training" aria-selected="false" tabindex="-1">Training</button>
           <button class="tab" role="tab" id="tab-gear" aria-controls="panel-gear" aria-selected="false" tabindex="-1">Gear</button>
         </div>
 
@@ -353,7 +304,7 @@
                 <span class="q-kind">Main scenario</span>
                 <div class="q-head"><h3>The Lower-Limb Exoskeleton</h3><span class="q-state on">Active</span></div>
               </div>
-              <p>I'm the control lead for IEEE EXO. We're building a lower-limb exoskeleton for balance correction during perturbed walking. I handle gait-phase detection, the actuator control loop, and the sensor network over CAN.</p>
+              <p>I'm the controls lead for IEEE EXO, a student club building a lower-limb exoskeleton that assists hip and knee movement. I'm working on the gait-phase detection, a state machine driven by force sensors, and the CAN setup between the Teensy sensor boards and the Jetson.</p>
             </li>
             <li class="quest">
               <svg class="q-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L28 16 L16 29 L4 16 Z" fill="#1A2640" stroke="#79C8EE" stroke-width="2"/><path d="M16 10 V22 M10 16 H22" stroke="#79C8EE" stroke-width="2.6" stroke-linecap="round"/></svg>
@@ -361,7 +312,7 @@
                 <span class="q-kind" style="color:var(--aether)">Feature quest</span>
                 <div class="q-head"><h3><a href="https://github.com/OscarC727/rotary-inverted-pendulum">In the Balance</a></h3><span class="q-state on">Active</span></div>
               </div>
-              <p>Building a rotary inverted pendulum with the control team as practice before the exo, plus PID workshops I run alongside it. All the code runs on Linux on the Jetson Nano, same as the legs will.</p>
+              <p>A rotary inverted pendulum the controls team is building as practice before the exo, alongside the PID workshops I run. The code runs on Linux on the Jetson, same as the exo will.</p>
             </li>
             <li class="quest">
               <svg class="q-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L28 16 L16 29 L4 16 Z" fill="#1A2640" stroke="#9CA5B8" stroke-width="2"/><path d="M10.5 16 L14.5 20 L21.5 12" fill="none" stroke="#9CA5B8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -369,7 +320,7 @@
                 <span class="q-kind">Complete</span>
                 <div class="q-head"><h3><a href="https://github.com/OscarC727/audio-spectrum-analyzer">Audio Spectrum Analyzer</a></h3><span class="q-state">Built</span></div>
               </div>
-              <p>Real-time audio spectrum on a TFT display. A mic feeds an FFT running on a Teensy, and I debugged the whole chain from the mic to the screen.</p>
+              <p>Co-built with a friend. It shows live sound frequencies as bars on a TFT screen using an FFT on a Teensy. I wrote and debugged the code that turns the audio into the display.</p>
               <span class="kit">Teensy 4.0, ILI9341 display, C++</span>
             </li>
             <li class="quest">
@@ -378,67 +329,27 @@
                 <span class="q-kind">Complete</span>
                 <div class="q-head"><h3><a href="https://github.com/OscarC727/stabilizing-spoon">Self-Stabilizing Spoon</a></h3><span class="q-state on">Prototype built</span></div>
               </div>
-              <p>Tremor-cancelling spoon on a 2-axis servo gimbal. An IMU reads the hand's motion and a PID loop keeps the spoon level. This is the project where I first learned PID and sensor filtering. Working on a custom PCB for it now.</p>
+              <p>A spoon that keeps itself level for people with hand tremors. An IMU reads the motion and my PID loop drives two servos to correct it. A teammate designed a custom PCB for it, and I'm porting the code to an STM32 next.</p>
               <span class="kit">ESP32 and XIAO ESP32, MPU6050, SG90 servos, C++</span>
             </li>
             <li class="quest">
-              <svg class="q-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L28 16 L16 29 L4 16 Z" fill="#1A2640" stroke="#F0E2A8" stroke-width="2"/><rect x="14.6" y="9" width="2.8" height="10" rx="1.2" fill="#F0E2A8"/><circle cx="16" cy="22.5" r="1.6" fill="#F0E2A8"/></svg>
+              <svg class="q-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L28 16 L16 29 L4 16 Z" fill="#1A2640" stroke="#9CA5B8" stroke-width="2"/><path d="M10.5 16 L14.5 20 L21.5 12" fill="none" stroke="#9CA5B8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <div>
-                <span class="q-kind">Side quest</span>
-                <div class="q-head"><h3><a href="https://github.com/OscarC727/fpga-verilog">Into the Silicon</a></h3><span class="q-state">Started</span></div>
+                <span class="q-kind">Complete</span>
+                <div class="q-head"><h3><a href="https://github.com/OscarC727/fpga-verilog">N-bit ALU in Verilog</a></h3><span class="q-state">Verified</span></div>
               </div>
-              <p>Learning Verilog on an FPGA dev board, starting small and building up to my first real digital design project.</p>
+              <p>A parameterized ALU with 8 operations and carry, overflow, zero, and negative flags. My testbenches check every 8-bit input plus a million random cases at 64 bits, with zero failures. I also set up an open-source toolchain to program a Tang Nano 20K FPGA.</p>
+              <span class="kit">Verilog, Icarus Verilog, Yosys, nextpnr</span>
             </li>
           </ul>
-        </div>
-
-        <!-- Training -->
-        <div class="pad" role="tabpanel" id="panel-training" aria-labelledby="tab-training" hidden>
-          <div class="duty">
-            <div class="t-top">
-              <p>A 3D sim of the rotary pendulum my team is building. Swing it up, let the PID catch it, then mess with the gains and see what happens. Drag to look around, click to push it.</p>
-              <span class="readout" id="readout">θ = 180.0°</span>
-            </div>
-            <ul class="objectives" aria-label="Training objectives">
-              <li class="o-h" style="grid-template-columns:1fr">Objectives</li>
-              <li id="obj-swing">Swing it up</li>
-              <li id="obj-push">Recover from a push</li>
-              <li id="obj-ki">Hold it with Ki at 0</li>
-              <li id="obj-kd">Set Kd to 0 and push it</li>
-              <li id="obj-fall">Drop Kp below 10, then push it</li>
-            </ul>
-          </div>
-          <div class="stage">
-            <canvas id="pend" width="720" height="440" role="img" aria-label="3D simulation of a rotary (Furuta) pendulum. A motor spins an arm with a pendulum on its tip. It starts hanging down; Swing up rocks the arm to raise it, then a PID controller balances it upright. Drag to rotate the view, click to push it while balancing."></canvas>
-            <div class="banner" id="banner" aria-hidden="true"><span class="rule"></span><strong id="banner-text">Balance Restored</strong><span class="rule"></span></div>
-          </div>
-          <div class="gauges">
-            <div class="gauge"><span>Stability <b id="hpv">0%</b></span><div class="bar"><i id="hpbar"></i></div></div>
-            <div class="gauge"><span>Motor effort <b id="mpv">0%</b></span><div class="bar"><i id="mpbar"></i></div></div>
-          </div>
-          <p class="t-status" id="t-status" aria-live="polite"></p>
-          <div class="gains">
-            <label><span class="top">Kp <output id="kpv">40</output></span><input id="kp" type="range" min="0" max="80" step="0.5" value="40"></label>
-            <label><span class="top">Ki <output id="kiv">4</output></span><input id="ki" type="range" min="0" max="20" step="0.5" value="4"></label>
-            <label><span class="top">Kd <output id="kdv">8</output></span><input id="kd" type="range" min="0" max="20" step="0.5" value="8"></label>
-          </div>
-          <div class="t-actions">
-            <button type="button" class="btn" id="swing">Swing up</button>
-            <button type="button" class="btn" id="nudge" disabled>Push the pendulum</button>
-            <button type="button" class="btn" id="reset">Reset</button>
-          </div>
         </div>
 
         <!-- Gear -->
         <div class="pad" role="tabpanel" id="panel-gear" aria-labelledby="tab-gear" hidden>
           <div class="gear">
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="none" stroke="#E4CB8C" stroke-width="1.6"/><path d="M9 3 V6 M12 3 V6 M15 3 V6 M9 18 V21 M12 18 V21 M15 18 V21 M3 9 H6 M3 15 H6 M18 9 H21 M18 15 H21" stroke="#E4CB8C" stroke-width="1.4"/></svg></span><div><h3>Controllers</h3><p>ESP32, Teensy, Arduino, Jetson Nano</p></div></div>
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="#79C8EE"/><path d="M6 6 A8.5 8.5 0 0 0 6 18 M18 6 A8.5 8.5 0 0 1 18 18" fill="none" stroke="#E4CB8C" stroke-width="1.6" stroke-linecap="round"/></svg></span><div><h3>Sensors</h3><p>IMUs (MPU6050), encoders, FSRs</p></div></div>
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7" fill="none" stroke="#E4CB8C" stroke-width="1.6"/><circle cx="12" cy="12" r="2.2" fill="#E4CB8C"/><path d="M12 5 V2 M12 22 V19 M5 12 H2 M22 12 H19" stroke="#E4CB8C" stroke-width="1.6"/></svg></span><div><h3>Actuators</h3><p>Servos, BLDC and QDD actuators</p></div></div>
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9 H21 M3 15 H21" stroke="#E4CB8C" stroke-width="1.6"/><circle cx="7" cy="9" r="1.8" fill="#79C8EE"/><circle cx="14" cy="15" r="1.8" fill="#79C8EE"/></svg></span><div><h3>Buses</h3><p>CAN, I²C, SPI</p></div></div>
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 L3.5 12 L8.5 17 M15.5 7 L20.5 12 L15.5 17" fill="none" stroke="#E4CB8C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Languages</h3><p>C++, Python, Verilog (learning)</p></div></div>
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15 C6 15 7 7 10 7 C13 7 13 17 16 17 C18 17 19 12 21 12" fill="none" stroke="#E4CB8C" stroke-width="1.6" stroke-linecap="round"/></svg></span><div><h3>Techniques</h3><p>PID, complementary and Kalman filtering, gait-phase state machines</p></div></div>
-            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="#E4CB8C" stroke-width="1.6"/><path d="M7 10 L10 12.5 L7 15 M12 15 H16" fill="none" stroke="#79C8EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Environment</h3><p>Linux, Git, FPGA dev boards</p></div></div>
+            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7 L3.5 12 L8.5 17 M15.5 7 L20.5 12 L15.5 17" fill="none" stroke="#E4CB8C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Programming</h3><p>Verilog, C++, Python, MATLAB</p></div></div>
+            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="#E4CB8C" stroke-width="1.6"/><path d="M7 10 L10 12.5 L7 15 M12 15 H16" fill="none" stroke="#79C8EE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h3>Platforms and tools</h3><p>Icarus Verilog, Linux, Git, SolidWorks, Simulink</p></div></div>
+            <div class="g-slot"><span class="g-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="none" stroke="#E4CB8C" stroke-width="1.6"/><path d="M9 3 V6 M12 3 V6 M15 3 V6 M9 18 V21 M12 18 V21 M15 18 V21 M3 9 H6 M3 15 H6 M18 9 H21 M18 15 H21" stroke="#E4CB8C" stroke-width="1.4"/></svg></span><div><h3>Hardware</h3><p>Jetson Orin Nano, FPGAs, ESP32, THT/SMD soldering</p></div></div>
           </div>
         </div>
       </section>
@@ -512,7 +423,6 @@ var selectTab;
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
     if(focus !== false) tab.focus();
-    if(tab.id === 'tab-training') window.dispatchEvent(new Event('training-shown'));
   };
   tabs.forEach(function(t, i){
     t.addEventListener('click', function(){ selectTab(t); });
@@ -520,12 +430,6 @@ var selectTab;
       if(e.key === 'ArrowRight') selectTab(tabs[(i + 1) % tabs.length]);
       if(e.key === 'ArrowLeft') selectTab(tabs[(i - 1 + tabs.length) % tabs.length]);
     });
-  });
-  document.getElementById('goto-training').addEventListener('click', function(){
-    var t = document.getElementById('tab-training');
-    selectTab(t, false);
-    t.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
-    t.focus({preventScroll: true});
   });
 })();
 
@@ -578,310 +482,6 @@ var selectTab;
   setInterval(load, 60000);
 })();
 
-/* ---------- Furuta (rotary) pendulum: swing-up, then PID balance, drawn in 3D ----------
-   A motor spins a horizontal arm; the pendulum hangs off the arm's tip and swings in the
-   plane tangent to it. theta is the pendulum angle from straight up, phi is the arm angle.
-   The control input a is the arm tip's acceleration:
-     theta'' = g*sin(theta) - a*cos(theta) + phi'^2*sin(theta)*cos(theta)
-   Swing-up pumps energy in, then the PID catches it near the top. A small second loop
-   keeps the arm from wandering off, same idea as on the real rig. */
-(function(){
-  var cv = document.getElementById('pend'), ctx = cv.getContext('2d');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var g = 9.81, aMax = 30, swingA = 7;
-  var th = Math.PI, w = 0, phi = 0, pw = 0, integ = 0, a = 0;
-  var mode = 'down';            // down | swing | balance
-  var disturbed = false, pushed = false, calm = 0, kdRing = 0;
-  var trace = [], N = 300, lastStatus = '';
-  var kp = document.getElementById('kp'), ki = document.getElementById('ki'), kd = document.getElementById('kd');
-  var statusEl = document.getElementById('t-status'), readout = document.getElementById('readout');
-  var hpbar = document.getElementById('hpbar'), mpbar = document.getElementById('mpbar');
-  var hpv = document.getElementById('hpv'), mpv = document.getElementById('mpv');
-  var swingBtn = document.getElementById('swing'), pushBtn = document.getElementById('nudge');
-  var banner = document.getElementById('banner'), bannerText = document.getElementById('banner-text'), bannerTimer = null;
-  var objs = { swing:false, push:false, ki:false, kd:false, fall:false }, allDone = false;
-
-  function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
-  function wrap(t){ return Math.atan2(Math.sin(t), Math.cos(t)); }
-  function sync(){
-    document.getElementById('kpv').textContent = kp.value;
-    document.getElementById('kiv').textContent = ki.value;
-    document.getElementById('kdv').textContent = kd.value;
-  }
-  [kp, ki, kd].forEach(function(el){ el.addEventListener('input', sync); });
-  sync();
-
-  function setStatus(s){ if(s !== lastStatus){ statusEl.textContent = s; lastStatus = s; } }
-  function showBanner(text){
-    bannerText.textContent = text;
-    banner.classList.add('show');
-    clearTimeout(bannerTimer);
-    bannerTimer = setTimeout(function(){ banner.classList.remove('show'); }, 2400);
-  }
-  function complete(key, label){
-    if(objs[key]) return;
-    objs[key] = true;
-    document.getElementById('obj-' + key).classList.add('done');
-    statusEl.textContent = 'Objective complete: ' + label + '.'; lastStatus = statusEl.textContent;
-    if(!allDone && objs.swing && objs.push && objs.ki && objs.kd && objs.fall){
-      allDone = true;
-      setTimeout(function(){ showBanner('Training Complete'); statusEl.textContent = 'All objectives complete.'; lastStatus = statusEl.textContent; }, 900);
-    }
-  }
-  function setMode(m){
-    mode = m;
-    swingBtn.disabled = (m !== 'down');
-    pushBtn.disabled = (m !== 'balance');
-  }
-  function reset(){ th = Math.PI; w = 0; phi = 0; pw = 0; integ = 0; a = 0; trace.length = 0; disturbed = pushed = false; setMode('down'); }
-  function push(dir){
-    if(mode !== 'balance') return;
-    w += (dir || (Math.random() < .5 ? -1 : 1)) * (1.6 + Math.random() * .6);
-    disturbed = pushed = true; calm = 0;
-  }
-  swingBtn.addEventListener('click', function(){ if(mode === 'down'){ integ = 0; setMode('swing'); } });
-  pushBtn.addEventListener('click', function(){ push(); });
-  document.getElementById('reset').addEventListener('click', reset);
-
-  /* ----- camera: drag to orbit, click (without dragging) to push ----- */
-  var yaw = -0.75, pitch = 0.32, dragged = false, userOrbited = false, down = null;
-  cv.style.touchAction = 'pan-y';
-  cv.addEventListener('pointerdown', function(e){ down = { x: e.clientX, y: e.clientY, yaw: yaw, pitch: pitch, id: e.pointerId }; dragged = false; });
-  cv.addEventListener('pointermove', function(e){
-    if(!down || e.pointerId !== down.id) return;
-    var dx = e.clientX - down.x, dy = e.clientY - down.y;
-    if(!dragged && Math.abs(dx) + Math.abs(dy) > 6){ dragged = true; userOrbited = true; try{ cv.setPointerCapture(e.pointerId); }catch(_){} }
-    if(dragged){
-      yaw = down.yaw + dx * 0.008;
-      if(e.pointerType === 'mouse') pitch = clamp(down.pitch + dy * 0.006, -0.05, 1.1);
-    }
-  });
-  function endDrag(e){
-    if(!down) return;
-    if(!dragged && e.type === 'pointerup') push();
-    down = null;
-  }
-  cv.addEventListener('pointerup', endDrag);
-  cv.addEventListener('pointercancel', endDrag);
-
-  function step(dt){
-    var E = 0.5 * w * w + g * (Math.cos(th) - 1);      // 0 when resting upright
-    if(mode === 'swing'){
-      if(Math.abs(wrap(th)) < 0.3){ th = wrap(th); integ = 0; setMode('balance'); disturbed = true; calm = 0; complete('swing', 'swung it up'); }
-      else {
-        a = 1.2 * E * w * Math.cos(th);                // pump energy toward the top
-        if(Math.abs(w) < .05 && E < -2 * g + .05) a = swingA;   // kick it off from rest
-        a = clamp(a, -swingA, swingA) - 1.5 * phi - 2 * pw;      // keep the arm near home
-      }
-    }
-    if(mode === 'balance'){
-      integ = clamp(integ + th * dt, -1.5, 1.5);
-      a = +kp.value * th + +ki.value * integ + +kd.value * w + 1.2 * phi + 2 * pw;
-      a = clamp(a, -aMax, aMax);
-    }
-    if(mode === 'down') a = -4 * pw;                     // arm coasts to a stop
-
-    w += (g * Math.sin(th) - a * Math.cos(th) + pw * pw * Math.sin(th) * Math.cos(th) - .05 * w) * dt
-         + (Math.random() - .5) * .004;
-    th += w * dt;
-    pw += a * dt; phi += pw * dt;
-
-    if(mode === 'balance' && Math.abs(th) > 0.9){
-      setMode('down'); disturbed = false;
-      if(+kp.value < 10) complete('fall', 'gravity won below Kp 10');
-      if(+kd.value === 0) complete('kd', 'saw what happens with Kd at 0');
-    }
-  }
-
-  /* ----- tiny 3D renderer: flat-shaded faces sorted back to front ----- */
-  var W = cv.width, H = cv.height, F = 560, DIST = 5.2, CX = W / 2, CY = (H - 56) / 2 + 4, AIM = -0.18;
-  var LIGHT = norm([-0.45, 0.8, -0.4]);
-  function norm(v){ var l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; }
-  function add(p, q){ return [p[0] + q[0], p[1] + q[1], p[2] + q[2]]; }
-  function sub(p, q){ return [p[0] - q[0], p[1] - q[1], p[2] - q[2]]; }
-  function mul(p, s){ return [p[0] * s, p[1] * s, p[2] * s]; }
-  function cross(p, q){ return [p[1] * q[2] - p[2] * q[1], p[2] * q[0] - p[0] * q[2], p[0] * q[1] - p[1] * q[0]]; }
-  function dot(p, q){ return p[0] * q[0] + p[1] * q[1] + p[2] * q[2]; }
-  function view(p){
-    var cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
-    var x = p[0] * cy - p[2] * sy, z = p[0] * sy + p[2] * cy, y = p[1] - AIM;   // aim at the rig's middle
-    var y2 = y * cp - z * sp, z2 = y * sp + z * cp;
-    return [x, y2, z2 + DIST];
-  }
-  function proj(v){ return [CX + F * v[0] / v[2], CY - F * v[1] / v[2]]; }
-  function shade(rgb, k){ return 'rgb(' + Math.round(rgb[0] * k) + ',' + Math.round(rgb[1] * k) + ',' + Math.round(rgb[2] * k) + ')'; }
-
-  var faces;
-  function face(pts, rgb, opt){
-    var vs = pts.map(view);
-    var n = cross(sub(vs[1], vs[0]), sub(vs[2], vs[0]));
-    var c = vs.reduce(function(s, v){ return add(s, v); }, [0, 0, 0]);
-    if(dot(n, c) > 0) return;                                  // facing away
-    var wn = norm(cross(sub(pts[1], pts[0]), sub(pts[2], pts[0])));
-    var k = 0.45 + 0.6 * Math.max(0, dot(wn, LIGHT));
-    faces.push({ pts: vs.map(proj), z: c[2] / vs.length, fill: shade(rgb, (opt && opt.flat) ? 1 : k), glow: opt && opt.glow, edge: opt && opt.edge });
-  }
-  // box from a center and three half-axis vectors
-  function box(c, u, v, n, rgb, opt){
-    var P = function(a, b, d){ return add(add(add(c, mul(u, a)), mul(v, b)), mul(n, d)); };
-    face([P(-1,-1, 1), P( 1,-1, 1), P( 1, 1, 1), P(-1, 1, 1)], rgb, opt);
-    face([P( 1,-1,-1), P(-1,-1,-1), P(-1, 1,-1), P( 1, 1,-1)], rgb, opt);
-    face([P( 1,-1, 1), P( 1,-1,-1), P( 1, 1,-1), P( 1, 1, 1)], rgb, opt);
-    face([P(-1,-1,-1), P(-1,-1, 1), P(-1, 1, 1), P(-1, 1,-1)], rgb, opt);
-    face([P(-1, 1, 1), P( 1, 1, 1), P( 1, 1,-1), P(-1, 1,-1)], rgb, opt);
-    face([P(-1,-1,-1), P( 1,-1,-1), P( 1,-1, 1), P(-1,-1, 1)], rgb, opt);
-  }
-  // upright cylinder, y0 to y1
-  function cyl(r, y0, y1, rgb, seg, opt){
-    seg = seg || 24;
-    var top = [], bot = [];
-    for(var i = 0; i < seg; i++){
-      var t = i / seg * Math.PI * 2, x = Math.cos(t) * r, z = Math.sin(t) * r;
-      top.push([x, y1, z]); bot.push([x, y0, z]);
-    }
-    for(i = 0; i < seg; i++){
-      var j = (i + 1) % seg;
-      face([bot[i], bot[j], top[j], top[i]], rgb, opt);
-    }
-    face(top.slice().reverse(), rgb, opt);
-    face(bot, rgb, opt);
-  }
-  // segment with a square cross-section from p to q
-  function beam(p, q, t, rgb, opt){
-    var d = sub(q, p), L = Math.hypot(d[0], d[1], d[2]), u = mul(d, 0.5 / L);
-    var ref = Math.abs(d[1]) / L > 0.9 ? [1, 0, 0] : [0, 1, 0];
-    var v = mul(norm(cross(d, ref)), t), n = mul(norm(cross(u, v)), t);
-    box(mul(add(p, q), 0.5), mul(u, L), v, n, rgb, opt);
-  }
-  function octa(c, s, rot, rgb, opt){
-    var up = [Math.sin(rot[0]) * s * 1.6 * rot[1][0], Math.cos(rot[0]) * s * 1.6, Math.sin(rot[0]) * s * 1.6 * rot[1][2]];
-    var e1 = mul(norm(cross(up, [0, 1, 0.001])), s), e2 = mul(norm(cross(up, e1)), s);
-    var T = add(c, up), B = sub(c, up), R = [add(c, e1), add(c, e2), sub(c, e1), sub(c, e2)];
-    for(var i = 0; i < 4; i++){
-      var r0 = R[i], r1 = R[(i + 1) % 4];
-      face([T, r1, r0], rgb, opt); face([B, r0, r1], rgb, opt);
-    }
-  }
-
-  function line3(p, q, style, width, dash){
-    var a0 = view(p), b0 = view(q);
-    if(a0[2] < .2 || b0[2] < .2) return;
-    var A = proj(a0), B = proj(b0);
-    ctx.strokeStyle = style; ctx.lineWidth = width; ctx.setLineDash(dash || []);
-    ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke(); ctx.setLineDash([]);
-  }
-  function ring3(r, y, style, width, dash){
-    ctx.strokeStyle = style; ctx.lineWidth = width; ctx.setLineDash(dash || []);
-    ctx.beginPath();
-    for(var i = 0; i <= 64; i++){
-      var t = i / 64 * Math.PI * 2, P = proj(view([Math.cos(t) * r, y, Math.sin(t) * r]));
-      if(i === 0) ctx.moveTo(P[0], P[1]); else ctx.lineTo(P[0], P[1]);
-    }
-    ctx.stroke(); ctx.setLineDash([]);
-  }
-
-  var ARM = 1.05, ROD = 1.15, TOP = 0.02;
-  var C_BASE = [26, 35, 55], C_MOTOR = [58, 74, 108], C_TRIM = [184, 153, 90], C_ARM = [228, 203, 140], C_ROD = [243, 230, 192], C_BOB = [121, 200, 238];
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-
-    // arm's sweep ring and the base's footprint, drawn flat first
-    ring3(ARM, TOP, 'rgba(184,153,90,.28)', 1, [5, 7]);
-
-    faces = [];
-    box([0, -1.47, 0], [0.7, 0, 0], [0, 0.05, 0], [0, 0, 0.7], C_BASE, { edge: true });
-    cyl(0.24, -1.42, -0.08, C_MOTOR);
-    cyl(0.26, -0.12, -0.06, C_TRIM, 24);
-    cyl(0.07, -0.06, TOP + 0.04, C_TRIM, 12);
-
-    var tipDir = [Math.cos(phi), 0, Math.sin(phi)], tan = [-Math.sin(phi), 0, Math.cos(phi)];
-    var tip = mul(tipDir, ARM); tip[1] = TOP;
-    beam([0, TOP, 0], tip, 0.045, C_ARM);
-    // pendulum hangs off the arm tip, swinging in the tangent plane
-    var dirP = add(mul(tan, Math.sin(th)), [0, Math.cos(th), 0]);
-    var pivot = add(tip, mul(tipDir, 0.06));
-    var end = add(pivot, mul(dirP, ROD));
-    beam(pivot, end, 0.022, C_ROD);
-    box(pivot, mul(tipDir, 0.06), [0, 0.05, 0], mul(tan, 0.05), C_TRIM);
-    octa(end, 0.075, [th, tan], C_BOB, { glow: true });
-
-    // upright reference above the pivot, drawn behind the solid parts
-    line3(pivot, add(pivot, [0, ROD, 0]), 'rgba(184,153,90,.45)', 1, [4, 6]);
-
-    faces.sort(function(p, q){ return q.z - p.z; });
-    faces.forEach(function(f){
-      ctx.beginPath();
-      ctx.moveTo(f.pts[0][0], f.pts[0][1]);
-      for(var i = 1; i < f.pts.length; i++) ctx.lineTo(f.pts[i][0], f.pts[i][1]);
-      ctx.closePath();
-      if(f.glow){ ctx.shadowColor = 'rgba(121,200,238,.85)'; ctx.shadowBlur = 18; }
-      ctx.fillStyle = f.fill; ctx.fill();
-      ctx.shadowBlur = 0;
-      ctx.strokeStyle = f.edge ? 'rgba(184,153,90,.55)' : 'rgba(0,0,0,.25)'; ctx.lineWidth = f.edge ? 1 : .5; ctx.stroke();
-    });
-
-    // angle trace along the bottom
-    var mid = H - 26, half = 18;
-    ctx.strokeStyle = 'rgba(184,153,90,.35)'; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(0, mid + .5); ctx.lineTo(W, mid + .5); ctx.stroke();
-    ctx.strokeStyle = '#79C8EE'; ctx.lineWidth = 2; ctx.beginPath();
-    var pen = false;
-    for(var i = 0; i < trace.length; i++){
-      if(trace[i] === null){ pen = false; continue; }
-      var tx = W - (trace.length - 1 - i) * (W / (N - 1));
-      var ty = mid - clamp(trace[i] / .6, -1, 1) * half;
-      if(!pen){ ctx.moveTo(tx, ty); pen = true; } else ctx.lineTo(tx, ty);
-    }
-    ctx.stroke();
-
-    ctx.fillStyle = 'rgba(156,165,184,.8)'; ctx.font = '13px "Noto Sans", sans-serif';
-    ctx.fillText(userOrbited ? '' : 'Drag to rotate', 14, 22);
-  }
-
-  var last = null;
-  function frame(t){
-    if(last === null) last = t;
-    var el = Math.min((t - last) / 1000, .05); last = t;
-    for(var i = 0; i < 10; i++) step(el / 10);
-    if(!userOrbited && !reduce) yaw += el * 0.12;          // slow idle orbit until someone drags
-
-    var tn = wrap(th);
-    trace.push(mode === 'balance' ? tn : null); if(trace.length > N) trace.shift();
-    var deg = tn * 180 / Math.PI; if(Math.abs(deg) > 179.5) deg = 180;
-    readout.textContent = 'θ = ' + deg.toFixed(1) + '°';
-    var hp = mode === 'balance' ? Math.round(clamp(1 - Math.abs(th) / .9, 0, 1) * 100) : 0;
-    var mp = Math.round(Math.min(1, Math.abs(a) / aMax) * 100);
-    hpbar.style.width = hp + '%'; hpv.textContent = hp + '%';
-    mpbar.style.width = mp + '%'; mpv.textContent = mp + '%';
-
-    var busy = lastStatus.indexOf('Objective') === 0 && Math.abs(th) < .2;
-    if(mode === 'down'){
-      if(!busy) setStatus(objs.swing ? 'It fell. Hit Swing up to go again.' : 'Hanging. Hit Swing up to get started.');
-    } else if(mode === 'swing'){
-      setStatus('Swinging up…');
-    } else {
-      var still = Math.abs(th) < .02 && Math.abs(w) < .05;
-      if(still){
-        calm += el;
-        if(disturbed && calm > .6){
-          disturbed = false;
-          if(pushed){ pushed = false; complete('push', 'recovered from a push'); }
-          if(!allDone) showBanner('Balance Restored');
-        }
-        else if(+ki.value === 0 && calm > 1.5) complete('ki', 'held it with Ki at 0');
-        else if(!busy && !banner.classList.contains('show')) setStatus('Holding steady.');
-      } else { calm = 0; if(!busy) setStatus('Recovering…'); }
-      if(+kd.value === 0 && Math.abs(th) > .035){ kdRing += el; if(kdRing > 2) complete('kd', 'saw what happens with Kd at 0'); }
-      else if(+kd.value !== 0) kdRing = 0;
-    }
-
-    draw();
-    requestAnimationFrame(frame);
-  }
-  reset();
-  requestAnimationFrame(frame);
-})();
 </script>
 </body>
 </html>
